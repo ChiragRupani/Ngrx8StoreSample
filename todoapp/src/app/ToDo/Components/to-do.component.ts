@@ -17,18 +17,15 @@ export class ToDoComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.todo$) {
-      this.ToDoSubscription = this.todo$
-        .pipe(
-          map(x => {
-            if (x) {
-              this.ToDoList = x.ToDos;
-              this.todoError = x.ToDoError;
-            }
-          })
-        )
-        .subscribe();
-    }
+    this.ToDoSubscription = this.todo$
+      .pipe(
+        map(x => {
+          this.ToDoList = x.ToDos;
+          this.todoError = x.ToDoError;
+        })
+      )
+      .subscribe();
+
     this.store.dispatch(ToDoActions.BeginGetToDoAction());
   }
 

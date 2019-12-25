@@ -20,7 +20,6 @@ describe('ToDoComponent', () => {
 
   const initialState = { todos: initializeState() };
   let store: MockStore<{ todos: ToDoState }>;
-  let effects: ToDoEffects;
   let actions$: Observable<Action>;
   let todoServiceSpy: jasmine.SpyObj<ToDoHttpService>;
 
@@ -40,7 +39,6 @@ describe('ToDoComponent', () => {
       .compileComponents()
       .then(() => {
         store = TestBed.get<Store<{ todos: ToDoState }>>(Store);
-        effects = TestBed.get<ToDoEffects>(ToDoEffects);
         todoServiceSpy = TestBed.get(ToDoHttpService);
       });
   }));
@@ -81,10 +79,8 @@ describe('ToDoComponent', () => {
     };
     store.setState({ todos: nextState });
 
-    const actions = new Actions(
-      cold('a', { a: todoActions.BeginGetToDoAction })
-    );
-
+    const source = hot('a', { a: todoActions.BeginGetToDoAction });
+    const actions = new Actions(source);
     const payload = [{ Title: 'second', IsCompleted: true }];
     todoServiceSpy.getToDos.and.returnValue(of(payload));
 
@@ -101,7 +97,8 @@ describe('ToDoComponent', () => {
     const testError = new Error('[To Do] - Test Error');
     todoServiceSpy.getToDos.and.returnValue(throwError(testError));
 
-    const effects = new ToDoEffects(todoServiceSpy, new Actions(source));
+    const actions = new Actions(source);
+    const effects = new ToDoEffects(todoServiceSpy, actions);
     const expected = cold('b', {
       b: { type: todoActions.ErrorToDoAction.type }
     });
