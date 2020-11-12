@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Actions } from '@ngrx/effects';
@@ -23,7 +23,7 @@ describe('ToDoComponent', () => {
   let actions$: Observable<Action>;
   let todoServiceSpy: jasmine.SpyObj<ToDoHttpService>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     const spy = jasmine.createSpyObj('ToDoHttpService', ['getToDos']);
 
     TestBed.configureTestingModule({

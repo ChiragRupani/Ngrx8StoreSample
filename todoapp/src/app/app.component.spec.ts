@@ -1,4 +1,4 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Store } from '@ngrx/store';
@@ -11,7 +11,7 @@ describe('AppComponent', () => {
   const initialState = initializeState();
   let store: MockStore<{ todos: ToDoState }>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, FormsModule],
       declarations: [AppComponent, ToDoComponent],
