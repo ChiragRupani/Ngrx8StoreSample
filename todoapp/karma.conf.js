@@ -28,5 +28,11 @@ module.exports = function (config) {
     browsers: ["Edge"],
     singleRun: false,
     restartOnFileChange: true,
+    customLaunchers: {
+      EdgeHeadlessCI: {
+        base: "EdgeDevHeadless",
+        flags: ["--no-sandbox"],
+      },
+    },
   });
 };
