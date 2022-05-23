@@ -1,6 +1,6 @@
 # Todoapp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21 (Current version 12).
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21 (Current version 13).
 
 ## Development server
 
@@ -25,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Migrate only
+
+`ng update @angular/cli --from 12 --to 13 --migrate-only`
