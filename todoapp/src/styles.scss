@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+$border-radius: 0.2rem;
+$border-radius-sm: 0.2rem;
+$border-radius-lg: 0.3rem;
+
+body.dark-theme {
+  background-color: #363636;
+  color: #fffdfc;
+}
+
+.dark-theme {
+  /* redefine theme colors for dark theme */
+  $primary: #012345;
+  $secondary: #111111;
+  $success: #222222;
+  $dark: #000;
+  $danger: #f74d4d;
+  $indigo: #843bf9;
+  $light: #ddd;
+  $variable-prefix: bs-;
+  $prefix: bs-;
+  $input-bg: $dark;
+  $input-color: $light;
+
+  $theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "danger": $danger,
+    "info": $indigo,
+    "dark": $dark,
+    "light": $light,
+  );
+
+  /* redefine theme color variables */
+  @each $color, $value in $theme-colors {
+    --#{$prefix}#{$color}: #{$value};
+  }
+
+  /* redefine theme color rgb vars (used for bg- colors) */
+  // $theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+  // @each $color, $value in $theme-colors-rgb {
+  //   --#{$prefix}#{$color}-rgb: #{$value};
+  // }
+
+  $body-color: #eeeeee;
+  $body-bg: #263c5c;
+
+  --#{$prefix}body-color: #{$body-color};
+  --#{$prefix}body-bg: #{$body-bg};
+}
+
+@import "../node_modules/bootstrap/scss/bootstrap";

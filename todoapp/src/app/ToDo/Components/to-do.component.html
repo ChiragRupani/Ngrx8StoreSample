@@ -1,42 +1,60 @@
-<div class="Container">
+<div class="Container mt-2">
   <h2>My wishlists:</h2>
 
-  <div *ngIf="todoError?.message">
-    <div class="alert alert-danger" role="alert" id="ToDoError">
-      Some error occurred. Please try again
+  <div *ngIf="todoError?.message" class="mt-3">
+    <div
+      class="alert alert-danger rounded-2 alert-dismissible fade show d-flex align-items-center"
+      role="alert"
+      id="ToDoError"
+    >
+      <div>Some error occurred. Please try again</div>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
     </div>
   </div>
 
-  <div *ngFor="let todo of ToDoList" class="ToDoList">
-    <div class="row">
-      <div class="col-md-2">Name:</div>
-      <div class="col-md-2 todoItem">{{ todo.Title }}</div>
-      <div class="col-md-2">IsCompleted:</div>
-      <div class="col-md-2 todoItem">{{ todo.IsCompleted }}</div>
-    </div>
-  </div>
+  <table
+    class="table table-dark table-striped table-responsive my-2"
+    style="max-width: 800px"
+  >
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Completed?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of ToDoList; index as ID" class="ToDoList">
+        <th scope="row">{{ ID + 1 }}</th>
+        <td>{{ todo.Title }}</td>
+        <td>{{ todo.IsCompleted ? "Yes" : "No" }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <hr />
 
-<div class="container form-group" style="margin: 10px">
+<div class="container form-group" style="margin: 15px 5px">
   <h3>Create New Wishlist</h3>
   <form (ngSubmit)="createToDo()">
-    <div class="row">
-      <div class="form-group col-md-4">
+    <div class="d-flex flex-column flex-lg-row gap-4 me-2">
+      <div class="form-group">
         <input
           [(ngModel)]="Title"
           placeholder="Enter your Wish"
           class="form-control"
           name="Title"
-          style="min-width: 150px"
+          style="min-width: 400px"
         />
       </div>
 
-      <div
-        class="col-md-2 form-check"
-        style="margin-top: 10px; margin-left: 30px"
-      >
+      <div class="form-check" style="margin-top: 10px">
         <input
           type="checkbox"
           class="form-check-input"
@@ -48,8 +66,8 @@
         <label for="IsCompleted" class="form-check-label">Completed?</label>
       </div>
 
-      <div class="col-md-2">
-        <button type="submit" class="btn btn-primary" style="width: 70px">
+      <div>
+        <button type="submit" class="btn btn-primary" style="width: 100px">
           Add
         </button>
       </div>

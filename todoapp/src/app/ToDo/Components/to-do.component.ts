@@ -1,25 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
-import * as ToDoActions from '../todo.action';
-import ToDo from '../todo.model';
-import ToDoState from '../todo.state';
+import { Component, OnInit } from "@angular/core";
+import { select, Store } from "@ngrx/store";
+import { Observable, Subscription } from "rxjs";
+import { map } from "rxjs/operators";
+import * as ToDoActions from "../todo.action";
+import ToDo from "../todo.model";
+import ToDoState from "../todo.state";
 
 @Component({
-  selector: 'app-to-do',
-  templateUrl: './to-do.component.html',
-  styleUrls: ['./to-do.component.css']
+  selector: "app-to-do",
+  templateUrl: "./to-do.component.html",
+  styleUrls: ["./to-do.component.scss"],
 })
 export class ToDoComponent implements OnInit {
   constructor(private store: Store<{ todos: ToDoState }>) {
-    this.todo$ = store.pipe(select('todos'));
+    this.todo$ = store.pipe(select("todos"));
   }
 
   ngOnInit() {
     this.ToDoSubscription = this.todo$
       .pipe(
-        map(x => {
+        map((x) => {
           this.ToDoList = x.ToDos;
           this.todoError = x.ToDoError;
         })
@@ -33,7 +33,7 @@ export class ToDoComponent implements OnInit {
   ToDoSubscription: Subscription;
   ToDoList: ToDo[] = [];
 
-  Title: string = '';
+  Title: string = "";
   IsCompleted: boolean = false;
 
   todoError: Error = null;
@@ -41,7 +41,7 @@ export class ToDoComponent implements OnInit {
   createToDo() {
     const todo: ToDo = { Title: this.Title, IsCompleted: this.IsCompleted };
     this.store.dispatch(ToDoActions.BeginCreateToDoAction({ payload: todo }));
-    this.Title = '';
+    this.Title = "";
     this.IsCompleted = false;
   }
 

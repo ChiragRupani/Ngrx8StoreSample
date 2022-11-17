@@ -19,11 +19,11 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": [
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            "styles": ["src/styles.scss"],
+            "scripts": [
+              "script.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
@@ -90,8 +90,11 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css"],
-            "scripts": []
+            "styles": ["src/styles.scss"],
+            "scripts": [
+              "script.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           }
         },
         "e2e": {

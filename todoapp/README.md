@@ -1,6 +1,6 @@
 # Todoapp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21 (Current version 14.2).
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) original version 8.3.21 (Current version 15).
 
 ## Development server
 
@@ -28,4 +28,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Migrate only
 
-`ng update @angular/cli --from 13 --to 14 --migrate-only`
+`ng update @angular/cli --from 14 --to 15 --migrate-only`
