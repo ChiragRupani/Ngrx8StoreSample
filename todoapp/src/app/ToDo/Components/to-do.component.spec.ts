@@ -23,29 +23,27 @@ describe("ToDoComponent", () => {
   let actions$: Observable<Action>;
   let todoServiceSpy: jasmine.SpyObj<ToDoHttpService>;
 
-  beforeEach(
-    waitForAsync(() => {
-      const spy = jasmine.createSpyObj("ToDoHttpService", ["getToDos"]);
+  beforeEach(waitForAsync(() => {
+    const spy = jasmine.createSpyObj("ToDoHttpService", ["getToDos"]);
 
-      TestBed.configureTestingModule({
-        imports: [RouterTestingModule, FormsModule, HttpClientModule],
-        declarations: [ToDoComponent],
-        providers: [
-          ToDoEffects,
-          provideMockStore({ initialState }),
-          provideMockActions(() => actions$),
-          { provide: ToDoHttpService, useValue: spy },
-        ],
-      })
-        .compileComponents()
-        .then(() => {
-          store = TestBed.inject(MockStore);
-          todoServiceSpy = TestBed.inject(
-            ToDoHttpService
-          ) as jasmine.SpyObj<ToDoHttpService>;
-        });
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule, FormsModule, HttpClientModule],
+      declarations: [ToDoComponent],
+      providers: [
+        ToDoEffects,
+        provideMockStore({ initialState }),
+        provideMockActions(() => actions$),
+        { provide: ToDoHttpService, useValue: spy },
+      ],
     })
-  );
+      .compileComponents()
+      .then(() => {
+        store = TestBed.inject(MockStore);
+        todoServiceSpy = TestBed.inject(
+          ToDoHttpService
+        ) as jasmine.SpyObj<ToDoHttpService>;
+      });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ToDoComponent);
@@ -126,12 +124,12 @@ describe("ToDoComponent", () => {
 
     expect(todoItem1.textContent).toContain(firstWish.Title);
     expect(todoItem1.textContent).toContain(
-      firstWish.IsCompleted ? "true" : "false"
+      firstWish.IsCompleted ? "Yes" : "No"
     );
 
     expect(todoItem2.textContent).toContain(secondWish.Title);
     expect(todoItem2.textContent).toContain(
-      secondWish.IsCompleted ? "true" : "false"
+      secondWish.IsCompleted ? "Yes" : "No"
     );
   });
 
