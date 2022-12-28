@@ -4,11 +4,15 @@ $border-radius-sm: 0.2rem;
 $border-radius-lg: 0.3rem;
 
 body.dark-theme {
-  background-color: #363636;
+  background-color: #0b0a0b;
   color: #fffdfc;
 }
 
-.dark-theme {
+* {
+  box-sizing: border-box;
+}
+
+.dark-theme1 {
   /* redefine theme colors for dark theme */
   $primary: #012345;
   $secondary: #111111;
