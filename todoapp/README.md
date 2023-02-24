@@ -1,6 +1,6 @@
 # Todoapp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) original version 8.3.21 (Current version 15).
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) original version 8.3.21 (Current version 15.2).
 
 ## Development server
 
