@@ -11,18 +11,14 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["ES2023", "dom"],
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "disableTypeScriptVersionCheck": true
   }
 }
