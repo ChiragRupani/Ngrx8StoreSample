@@ -28,4 +28,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Migrate only
 
-`ng update @angular/cli --from 15 --to 16 --migrate-only --allow-dirty`
+`ng update @angular/cli --from 16 --to 17 --migrate-only --allow-dirty`
+
+# Using Angular 17
+
+ng generate @angular/core:standalone
+ng generate @angular/core:control-flow

@@ -27,8 +27,12 @@ describe("ToDoComponent", () => {
     const spy = jasmine.createSpyObj("ToDoHttpService", ["getToDos"]);
 
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, FormsModule, HttpClientModule],
-      declarations: [ToDoComponent],
+      imports: [
+        RouterTestingModule,
+        FormsModule,
+        HttpClientModule,
+        ToDoComponent,
+      ],
       providers: [
         ToDoEffects,
         provideMockStore({ initialState }),

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { select, Store } from "@ngrx/store";
+import { FormsModule } from "@angular/forms";
+import { Store, select } from "@ngrx/store";
 import { Observable, Subscription } from "rxjs";
 import { map } from "rxjs/operators";
 import * as ToDoActions from "../todo.action";
@@ -10,6 +11,8 @@ import ToDoState from "../todo.state";
   selector: "app-to-do",
   templateUrl: "./to-do.component.html",
   styleUrls: ["./to-do.component.scss"],
+  standalone: true,
+  imports: [FormsModule],
 })
 export class ToDoComponent implements OnInit {
   constructor(private store: Store<{ todos: ToDoState }>) {
