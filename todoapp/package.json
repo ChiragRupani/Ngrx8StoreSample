@@ -9,29 +9,29 @@
     "test": "ng test --no-watch --browsers=EdgeAnyHeadless",
     "lint": "ng lint",
     "migrate-cli": "ng update @angular/cli --from 17 --to 18 --migrate-only --allow-dirty",
-    "migrate-core": "ng update --from 12 --to 18 --migrate-only --allow-dirty"
+    "migrate-core": "ng update @angular/core --from 17 --to 18 --migrate-only --allow-dirty"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^18.0.0",
-    "@angular/common": "^18.0.0",
-    "@angular/compiler": "^18.0.0",
-    "@angular/core": "^18.0.0",
-    "@angular/forms": "^18.0.0",
-    "@angular/platform-browser": "^18.0.0",
-    "@angular/platform-browser-dynamic": "^18.0.0",
-    "@angular/router": "^18.0.0",
-    "@ngrx/effects": "^17.2.0",
-    "@ngrx/store": "^17.2.0",
+    "@angular/animations": "^18.1.0",
+    "@angular/common": "^18.1.0",
+    "@angular/compiler": "^18.1.0",
+    "@angular/core": "^18.1.0",
+    "@angular/forms": "^18.1.0",
+    "@angular/platform-browser": "^18.1.0",
+    "@angular/platform-browser-dynamic": "^18.1.0",
+    "@angular/router": "^18.1.0",
+    "@ngrx/effects": "^18.0.1",
+    "@ngrx/store": "^18.0.1",
     "bootstrap": "^5.3.3",
     "rxjs": "~7.8.1",
-    "tslib": "^2.6.2",
-    "zone.js": "~0.14.6"
+    "tslib": "^2.6.3",
+    "zone.js": "~0.14.7"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^18.0.0",
-    "@angular/cli": "^18.0.0",
-    "@angular/compiler-cli": "^18.0.0",
+    "@angular-devkit/build-angular": "^18.1.0",
+    "@angular/cli": "^18.1.0",
+    "@angular/compiler-cli": "^18.1.0",
     "@chiragrupani/karma-chromium-edge-launcher": "^2.4.1",
     "@types/jasmine": "~5.1.4",
     "jasmine-core": "~5.1.2",
@@ -40,6 +40,6 @@
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.4.5"
+    "typescript": "~5.5.3"
   }
 }
