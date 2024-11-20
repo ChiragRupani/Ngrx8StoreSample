@@ -8,11 +8,10 @@ import ToDo from "../todo.model";
 import ToDoState from "../todo.state";
 
 @Component({
-  selector: "app-to-do",
-  templateUrl: "./to-do.component.html",
-  styleUrls: ["./to-do.component.scss"],
-  standalone: true,
-  imports: [FormsModule],
+    selector: "app-to-do",
+    templateUrl: "./to-do.component.html",
+    styleUrls: ["./to-do.component.scss"],
+    imports: [FormsModule]
 })
 export class ToDoComponent implements OnInit {
   constructor(private store: Store<{ todos: ToDoState }>) {
