@@ -7,22 +7,37 @@ const initialState = initializeState();
 
 const reducer = createReducer(
   initialState,
-  on(ToDoActions.GetToDoAction, state => state),
-  on(ToDoActions.CreateToDoAction, (state: ToDoState, todo: ToDo) => {
-    return { ...state, ToDos: [...state.ToDos, todo], ToDoError: null };
-  }),
+  on(ToDoActions.GetToDoAction, (state) => state),
 
-  on(ToDoActions.SuccessGetToDoAction, (state: ToDoState, { payload }) => {
-    return { ...state, ToDos: payload, ToDoError: null };
-  }),
-  on(ToDoActions.SuccessCreateToDoAction, (state: ToDoState, { payload }) => {
-    return { ...state, ToDos: [...state.ToDos, payload], ToDoError: null };
-  }),
-  on(ToDoActions.ErrorToDoAction, (state: ToDoState, error: Error) => {
-    // remove below line and use different telemetry logging
-    console.error(error);
-    return { ...state, ToDoError: error };
-  })
+  on(
+    ToDoActions.CreateToDoAction,
+    (state: ToDoState, todo: ToDo): ToDoState => {
+      return { ...state, ToDos: [...state.ToDos, todo], ToDoError: null };
+    }
+  ),
+
+  on(
+    ToDoActions.SuccessGetToDoAction,
+    (state: ToDoState, { payload }): ToDoState => {
+      return { ...state, ToDos: payload, ToDoError: null };
+    }
+  ),
+
+  on(
+    ToDoActions.SuccessCreateToDoAction,
+    (state: ToDoState, { payload }): ToDoState => {
+      return { ...state, ToDos: [...state.ToDos, payload], ToDoError: null };
+    }
+  ),
+
+  on(
+    ToDoActions.ErrorToDoAction,
+    (state: ToDoState, error: Error): ToDoState => {
+      // remove below line and use different telemetry logging
+      console.error(error);
+      return { ...state, ToDoError: error };
+    }
+  )
 );
 
 export function ToDoReducer(
