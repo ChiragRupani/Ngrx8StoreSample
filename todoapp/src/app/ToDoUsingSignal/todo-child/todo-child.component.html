@@ -1,0 +1,34 @@
+<div class="container form-group" style="margin: 15px 5px">
+  <h3>Create New Wishlist</h3>
+  <form (ngSubmit)="createToDo()">
+    <div class="d-flex flex-column flex-lg-row gap-4 me-2">
+      <div class="form-group">
+        <input
+          [(ngModel)]="Title"
+          placeholder="Enter your Wish"
+          class="form-control"
+          name="Title"
+          style="min-width: 400px"
+        />
+      </div>
+
+      <div class="form-check" style="margin-top: 10px">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="IsCompleted"
+          name="IsCompleted"
+          [(ngModel)]="IsCompleted"
+        />
+
+        <label for="IsCompleted" class="form-check-label">Completed?</label>
+      </div>
+
+      <div>
+        <button type="submit" class="btn btn-primary" style="width: 100px">
+          Add
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

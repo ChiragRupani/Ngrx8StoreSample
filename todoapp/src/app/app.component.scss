@@ -1,0 +1,24 @@
+.active {
+  padding: 2px;
+  border-bottom: 4px solid #84bbf3;
+}
+
+nav {
+  margin: 1px;
+  padding: 1px;
+
+  a {
+    margin: 1px 7px;
+  }
+}
+
+.separator {
+  padding: 1px 3px;
+  border-right: 2px solid gray;
+  height: 20px;
+}
+
+.content {
+  padding: 2px;
+  margin: 15px;
+}

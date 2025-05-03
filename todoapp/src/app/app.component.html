@@ -1,3 +1,23 @@
-<app-to-do></app-to-do>
+<nav class="navbar sticky-top bg-body-tertiary">
+  <div class="container-fluid justify-content-start">
+    <a
+      class="button nav-link"
+      routerLink="/ToDoNgrxStore"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      >ToDos using Ngrx Store</a
+    >
+    <div class="separator"></div>
+    <a
+      class="button nav-link"
+      routerLink="/ToDoSignal"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      >ToDos using Signal</a
+    >
+  </div>
+</nav>
 
-<router-outlet />
+<div class="content">
+  <router-outlet />
+</div>
