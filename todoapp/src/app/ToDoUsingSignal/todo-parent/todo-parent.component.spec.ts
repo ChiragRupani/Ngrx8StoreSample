@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormsModule } from '@angular/forms';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { of } from 'rxjs';
 import { ToDoHttpService } from '../../ToDo/todo.httpservice';
 import ToDo from '../../ToDo/todo.model';
@@ -24,7 +25,10 @@ describe('TodoParentComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [TodoParentComponent, FormsModule],
-      providers: [{ provide: ToDoHttpService, useValue: spy }],
+      providers: [
+        { provide: ToDoHttpService, useValue: spy },
+        provideAnimationsAsync(),
+      ],
     })
       .compileComponents()
       .then(() => {
