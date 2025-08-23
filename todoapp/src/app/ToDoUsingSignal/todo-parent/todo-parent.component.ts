@@ -1,4 +1,3 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToDoHttpService } from '../../ToDo/todo.httpservice';
@@ -10,22 +9,6 @@ import { TodoChildComponent } from '../todo-child/todo-child.component';
   imports: [FormsModule, TodoChildComponent],
   templateUrl: './todo-parent.component.html',
   styleUrl: './todo-parent.component.scss',
-  animations: [
-    trigger('todoAnimation', [
-      // The ':enter' alias matches the insertion of a new element into the DOM.
-      transition(
-        ':enter',
-        [
-          style({ opacity: 0, transform: 'translateY(-20px)' }),
-          animate(
-            '{{duration}}ms ease-out',
-            style({ opacity: 1, transform: 'translateY(0)' })
-          ),
-        ],
-        { params: { duration: 300 } }
-      ),
-    ]),
-  ],
 })
 export class TodoParentComponent implements OnInit {
   ToDoList = signal<ToDo[]>([]);

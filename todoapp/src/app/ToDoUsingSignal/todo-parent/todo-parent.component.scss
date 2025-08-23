@@ -8,3 +8,20 @@
 .alert-dismissible .btn-close {
   padding: 0.7rem 1rem;
 }
+
+.todoAnimation {
+  animation: todoAnimation 300ms;
+  animation-timing-function: ease-out;
+}
+
+@keyframes todoAnimation {
+  from {
+    opacity: 0;
+    transform: "translateY(-20px)";
+  }
+
+  to {
+    opacity: 1;
+    transform: "translateY(0)";
+  }
+}

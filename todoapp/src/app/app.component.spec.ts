@@ -1,4 +1,5 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { provideZonelessChangeDetection } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { provideMockStore } from '@ngrx/store/testing';
@@ -8,11 +9,13 @@ import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   const initialState = initializeState();
+  let fixture: ComponentFixture<AppComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [FormsModule, ToDoComponent],
       providers: [
+        provideZonelessChangeDetection(),
         provideMockStore({ initialState }),
         {
           provide: ActivatedRoute,
@@ -23,13 +26,14 @@ describe('AppComponent', () => {
           },
         },
       ],
-    })
-      .compileComponents()
-      .then(() => {});
-  }));
+      inferTagName: true,
+    }).compileComponents();
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(AppComponent);
+    await fixture.whenStable();
+  });
+
+  it('should create the app', async () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });

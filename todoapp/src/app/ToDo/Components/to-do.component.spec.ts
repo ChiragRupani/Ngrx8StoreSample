@@ -1,5 +1,6 @@
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { provideZonelessChangeDetection } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { Actions } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -19,21 +20,23 @@ describe('ToDoComponent', () => {
 
   const initialState = { todos: initializeState() };
   let store: MockStore<{ todos: ToDoState }>;
-  let actions$: Observable<Action>;
+  let actions$: Observable<Action> = new Observable<Action>();
   let todoServiceSpy: jasmine.SpyObj<ToDoHttpService>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     const spy = jasmine.createSpyObj('ToDoHttpService', ['getToDos']);
 
     TestBed.configureTestingModule({
       imports: [FormsModule, ToDoComponent],
       providers: [
+        provideZonelessChangeDetection(),
         ToDoEffects,
         provideMockStore({ initialState }),
         provideMockActions(() => actions$),
         { provide: ToDoHttpService, useValue: spy },
         provideHttpClient(withFetch()),
       ],
+      inferTagName: true,
     })
       .compileComponents()
       .then(() => {
@@ -42,12 +45,12 @@ describe('ToDoComponent', () => {
           ToDoHttpService
         ) as jasmine.SpyObj<ToDoHttpService>;
       });
-  }));
+  });
 
-  beforeEach(() => {
+  beforeEach(async () => {
     fixture = TestBed.createComponent(ToDoComponent);
     todoComponent = fixture.componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('To Do component should be created', () => {
@@ -106,7 +109,7 @@ describe('ToDoComponent', () => {
     expect(effects.GetToDos$).toBeObservable(expected);
   });
 
-  it('To Do component show latest todos', () => {
+  it('To Do component show latest todos', async () => {
     const firstWish = { Title: 'First Wish', IsCompleted: true };
     const secondWish = { Title: 'Second Wish', IsCompleted: false };
 
@@ -115,7 +118,9 @@ describe('ToDoComponent', () => {
     });
     store.refreshState();
 
-    fixture.detectChanges();
+    fixture.changeDetectorRef.markForCheck();
+    await fixture.whenStable();
+
     const todoElement: HTMLElement = fixture.nativeElement;
     const elements = todoElement.querySelectorAll('.ToDoList');
     const todoItem1 = elements[0];
@@ -132,19 +137,19 @@ describe('ToDoComponent', () => {
     );
   });
 
-  it('To Do component show Error if there is error', () => {
+  it('To Do component show Error if there is error', async () => {
     const firstWish = { Title: 'First Wish', IsCompleted: true };
 
     store.setState({
       todos: { ToDos: [firstWish], ToDoError: new Error('Test Error') },
     });
     store.refreshState();
+    fixture.changeDetectorRef.markForCheck();
+    await fixture.whenStable();
 
-    fixture.detectChanges();
     const todoElement: HTMLElement = fixture.nativeElement;
     const todoItem1 = todoElement.querySelectorAll('.ToDoList')[0];
     const errorDiv = todoElement.querySelector('#ToDoError');
-
     expect(errorDiv.textContent.length).toBeGreaterThan(0);
     expect(todoItem1.textContent).toContain(firstWish.Title);
   });

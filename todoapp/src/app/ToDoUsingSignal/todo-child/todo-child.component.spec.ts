@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { provideZonelessChangeDetection } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TodoChildComponent } from './todo-child.component';
 
@@ -10,11 +11,13 @@ describe('TodoChildComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TodoChildComponent, FormsModule],
+      providers: [provideZonelessChangeDetection()],
+      inferTagName: true,
     }).compileComponents();
 
     fixture = TestBed.createComponent(TodoChildComponent);
+    await fixture.whenStable();
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -44,7 +47,7 @@ describe('TodoChildComponent', () => {
     expect(component.Title).toEqual('');
   });
 
-  it('should emit onCreateToDo on form submit via the DOM', () => {
+  it('should emit onCreateToDo on form submit via the DOM', async () => {
     spyOn(component.onCreateToDo, 'emit');
     const compiled = fixture.nativeElement as HTMLElement;
 
@@ -52,12 +55,13 @@ describe('TodoChildComponent', () => {
     const inputElement = compiled.querySelector('input') as HTMLInputElement;
     inputElement.value = 'Apply for job';
     inputElement.dispatchEvent(new Event('input'));
-    fixture.detectChanges(); // update the binding
+    // update the binding
+    await fixture.whenStable();
 
     // Trigger the form submit event
     const formElement = compiled.querySelector('form') as HTMLFormElement;
     formElement.dispatchEvent(new Event('submit'));
-    fixture.detectChanges();
+    await fixture.whenStable();
 
     expect(component.onCreateToDo.emit).toHaveBeenCalledWith({
       Title: 'Apply for job',

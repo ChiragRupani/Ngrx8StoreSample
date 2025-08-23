@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { provideZonelessChangeDetection } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { of } from 'rxjs';
 import { ToDoHttpService } from '../../ToDo/todo.httpservice';
 import ToDo from '../../ToDo/todo.model';
@@ -26,8 +26,8 @@ describe('TodoParentComponent', () => {
     await TestBed.configureTestingModule({
       imports: [TodoParentComponent, FormsModule],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: ToDoHttpService, useValue: spy },
-        provideAnimationsAsync(),
       ],
     })
       .compileComponents()
@@ -41,7 +41,7 @@ describe('TodoParentComponent', () => {
     component = fixture.componentInstance;
     component.ToDoList.set([]);
     todoServiceSpy.getToDos.and.returnValue(of(mockTodos));
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {
@@ -59,9 +59,9 @@ describe('TodoParentComponent', () => {
     expect(component.ToDoList()).toEqual(mockTodos);
   });
 
-  it('should add a new todo and update the todos signal', () => {
+  it('should add a new todo and update the todos signal', async () => {
     component.ToDoList.set([]);
-    fixture.detectChanges();
+    await fixture.whenStable();
 
     // Arrange: define a new todo title and what the service should return
     const newTitle = 'New Todo';
@@ -77,10 +77,10 @@ describe('TodoParentComponent', () => {
     expect(component.ToDoList()).toEqual([createdTodo]);
   });
 
-  it('should display todos in the component template', () => {
+  it('should display todos in the component template', async () => {
     // Arrange: set the todos signal with two sample items
     component.ToDoList.set(mockTodos);
-    fixture.detectChanges();
+    await fixture.whenStable();
 
     // Act: get the rendered list items from the template
     const compiled = fixture.nativeElement as HTMLElement;

@@ -32,13 +32,7 @@
     </thead>
     <tbody>
       @for (todo of ToDoList(); track todo; let ID = $index) {
-      <tr
-        class="ToDoList"
-        [@todoAnimation]="{
-          value: 'in',
-          params: { duration: animateNewItems ? 300 : 0 }
-        }"
-      >
+      <tr class="ToDoList" animate.enter="todoAnimation">
         <th scope="row">{{ ID + 1 }}</th>
         <td>{{ todo.Title }}</td>
         <td>{{ todo.IsCompleted ? "Yes" : "No" }}</td>
