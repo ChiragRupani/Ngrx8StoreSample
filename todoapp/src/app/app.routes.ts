@@ -15,6 +15,11 @@ export const routes: Routes = [
   },
   {
     path: '',
+    redirectTo: '/ToDoNgrxStore',
+    pathMatch: 'full',
+  },
+  {
+    path: '**',
     loadComponent: () =>
       import('./ToDo/Components/to-do.component').then((m) => m.ToDoComponent),
   },
