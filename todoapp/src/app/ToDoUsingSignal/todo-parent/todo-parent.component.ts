@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToDoHttpService } from '../../ToDo/todo.httpservice';
 import ToDo from '../../ToDo/todo.model';
@@ -8,6 +8,7 @@ import { TodoChildComponent } from '../todo-child/todo-child.component';
   selector: 'app-todo-parent',
   imports: [FormsModule, TodoChildComponent],
   templateUrl: './todo-parent.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './todo-parent.component.scss',
 })
 export class TodoParentComponent implements OnInit {

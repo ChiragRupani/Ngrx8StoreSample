@@ -28,4 +28,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Migrate only
 
-`ng update @angular/cli --from 16 --to 17 --migrate-only --allow-dirty`
+`ng update @angular/cli --from 21 --to 22 --migrate-only --allow-dirty`

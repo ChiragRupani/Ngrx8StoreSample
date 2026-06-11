@@ -1,4 +1,4 @@
-import { Component, output } from '@angular/core';
+import { Component, output, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import ToDo from '../../ToDo/todo.model';
 
@@ -6,6 +6,7 @@ import ToDo from '../../ToDo/todo.model';
   selector: 'app-todo-child',
   imports: [FormsModule],
   templateUrl: './todo-child.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './todo-child.component.scss',
 })
 export class TodoChildComponent {
